@@ -109,12 +109,6 @@ class Store:
         self.db.row_factory = sqlite3.Row
         self._load()
 
-    def _source(self, table: str) -> Path:
-        matches = sorted(p for p in self.path.glob("*.csv") if p.name.endswith(f"{table}.csv"))
-        if len(matches) != 1:
-            raise FileNotFoundError(f"Expected one CSV ending in '{table}.csv' in {self.path}; found {len(matches)}")
-        return matches[0]
-
     def _load(self) -> None:
         tables = read_tables(self.path)
         ddl = """

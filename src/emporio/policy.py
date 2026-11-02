@@ -62,7 +62,7 @@ def topic_from_text(question: str) -> str | None:
 
 
 APPROVED_PDF_SHA256 = 'b7527f96896929f4ba929de117651c6717e25b7a3b92b34bc54d5ba32f6156f7'
-APPROVED_DEMO_SHA256 = '419e69af4c10014b5845f02146d377638d0ba8e14905c9240cd49fc20e5d0f30'
+APPROVED_DEMO_SHA256 = '56beafcc4406a683bf8227aab6bf8886970e5aa0c5bc1d882010d15e21888a04'
 EXTRA_PAGES = {'contact': [2], 'defects': [7], 'shipping': [5], 'privacy': [8]}
 
 
@@ -97,7 +97,9 @@ class PolicyBook:
             fixture = data_dir / "policies_demo.json"
             if not fixture.exists():
                 raise FileNotFoundError("Provide políticas_da_loja.pdf or policies_demo.json in --data-dir")
-            self.digest = hashlib.sha256(fixture.read_bytes()).hexdigest()
+            # Git may convert LF/CRLF; only line endings are normalized. All
+            # policy text changes still require explicit review and re-pinning.
+            self.digest = hashlib.sha256(fixture.read_text(encoding='utf-8').encode('utf-8')).hexdigest()
             if self.digest != APPROVED_DEMO_SHA256:
                 raise ValueError('Unreviewed demo policy fixture')
             self.pages = {int(k): v for k, v in json.loads(fixture.read_text(encoding="utf-8")).items()}

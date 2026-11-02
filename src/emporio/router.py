@@ -9,7 +9,6 @@ import re
 
 from .store import norm
 from .policy import POLICIES, topic_from_text
-from .security import EMAIL
 
 # Longer phrases precede generic 'guitar'.
 CATEGORIES = {

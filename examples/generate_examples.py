@@ -21,7 +21,7 @@ def main():
                              authenticator=Authenticator({hashlib.sha256(DEMO_TOKEN.encode()).hexdigest(): 2}))
         lines = [f"# {title.replace('_', ' ').title()}", "",
                  "Recorded by the executable **offline demonstration router (NO LLM)**.",
-                 "Data: sanitized case-study demo snapshot. Responses are in English.", ""]
+                 "Data: non-personal catalog snapshot and entirely synthetic customer/order fixtures. Responses are in English.", ""]
         for text in messages:
             if text.startswith('/login'):
                 assert agent.authenticate(DEMO_TOKEN)
@@ -30,7 +30,7 @@ def main():
                 continue
             result = agent.reply(text)
             lines += [f"**Customer:** {text}", "", f"**Assistant:** {result.text}", "",
-                      f"*Tool path:* `{result.route}`  ", f"*Source:* {result.source or 'none'}", "", "---", ""]
+                      f"*Tool path:* `{result.route}`", "", f"*Source:* {result.source or 'none'}", "", "---", ""]
         (ROOT / "examples" / f"{title}.md").write_text("\n".join(lines), encoding="utf-8")
         agent.close()
 

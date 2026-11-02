@@ -29,6 +29,13 @@ def test_modified_policy_with_same_heading_is_rejected(tmp_path):
         PolicyBook(file.parent)
 
 
+@pytest.mark.parametrize('ending', ['\n', '\r\n'])
+def test_demo_policy_digest_survives_platform_line_endings(tmp_path, ending):
+    text = (DATA / 'policies_demo.json').read_text(encoding='utf-8')
+    (tmp_path / 'policies_demo.json').write_bytes(text.replace('\n', ending).encode('utf-8'))
+    assert PolicyBook(tmp_path).lookup('returns') == PolicyBook(DATA).lookup('returns')
+
+
 def test_ambiguous_rules_are_not_silently_resolved():
     b = PolicyBook(DATA)
     assert 'exactly R$ 500 is unspecified' in b.lookup('shipping')[0]

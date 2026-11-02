@@ -2,8 +2,6 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from decimal import Decimal
-import re
 
 from .policy import PolicyBook, topic_from_text
 from .router import Router, ProviderError, order_id_from_text, validate_call
@@ -190,7 +188,7 @@ class EmporioAgent:
                 else:
                     result = Reply("I can help with musical instruments, product availability, orders and store policies. What would you like to know?",
                                    "out_of_scope", "")
-        except (ValueError, TypeError) as exc:
+        except (ValueError, TypeError):
             result = Reply("I couldn't process those details safely. Could you rephrase the request?", name, "")
         # Do not persist personal information in the LLM prompt/history.
         if name != "order_status":
