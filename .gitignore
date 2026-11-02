@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.egg-info/
+.env
+.env.*
+!.env.example
+# Original supplied files may contain personal data and internal documents.
+data/raw/
+**/políticas_da_loja.pdf
+**/politicas_da_loja.pdf
+*.db
+.DS_Store
+.local/
+dist/
+build/
+coverage.xml
+.coverage
+auth_tokens.json
+*.log
+/data/*
+!/data/README.md
+!/data/demo/
+*.pdf

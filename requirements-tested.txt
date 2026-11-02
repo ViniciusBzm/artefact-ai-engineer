@@ -1,0 +1,6 @@
+# Direct dependency versions actually used for this local verification.
+# Python 3.12.14 / Windows. Transitive dependencies are resolved by pip.
+openai==2.54.0
+pypdf==6.10.0
+pytest==9.2.0
+httpx==0.28.1

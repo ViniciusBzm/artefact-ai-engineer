@@ -1,0 +1,3 @@
+customer_id,name,phone,email,city
+1,Demo Customer A,,customer001@example.test,Demo City
+2,Demo Customer B,,customer002@example.test,Demo City
