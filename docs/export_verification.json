@@ -1,0 +1,53 @@
+{
+  "executed_at_utc": "2026-11-03T03:16:07.716480+00:00",
+  "installation": "Fresh venv without system-site packages; pip install -e .[all]",
+  "python": "3.12.14",
+  "current_export_tests": {
+    "collected": 140,
+    "passed": 133,
+    "skipped": 7,
+    "failed": 0
+  },
+  "skipped_groups": {
+    "real_provider": 5,
+    "private_original_sources": 2
+  },
+  "offline_evaluation": {
+    "mode": "offline rules (NO LLM)",
+    "cases": 26,
+    "passed": 26,
+    "failed": 0,
+    "turns": 28,
+    "validated_provider_calls": 0
+  },
+  "cli_product_lookup": "Executed successfully; supplied price R$ 2.199,00 and source trace observed",
+  "live_preflight": "No credential present; no provider request executed",
+  "real_api_calls_for_export": 0,
+  "application_source_identical": true,
+  "prior_real_integration": {
+    "executed_separately_before_export": true,
+    "test_cases": [
+      {
+        "name": "test_real_provider_selects_and_executes_grounded_product_tool",
+        "passed": true
+      },
+      {
+        "name": "test_real_provider_multiturn_tool_execution[conversation0]",
+        "passed": true
+      },
+      {
+        "name": "test_real_provider_multiturn_tool_execution[conversation1]",
+        "passed": true
+      },
+      {
+        "name": "test_real_provider_multiturn_tool_execution[conversation2]",
+        "passed": true
+      },
+      {
+        "name": "test_real_provider_session_preserves_local_order_boundary",
+        "passed": true
+      }
+    ]
+  },
+  "scope": "Fixed-fixture regression. Existing live evidence applies to unchanged application source; no new live test is claimed."
+}

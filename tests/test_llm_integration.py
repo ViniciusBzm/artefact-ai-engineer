@@ -1,6 +1,7 @@
 """Real SDK + mocked HTTP transport; a separate opt-in test calls the real API."""
 import json
 import os
+import hashlib
 from pathlib import Path
 
 import httpx
@@ -8,6 +9,7 @@ import pytest
 
 from emporio.agent import EmporioAgent
 from emporio.router import ProviderError, Router, TOOL_SPEC, validate_call
+from emporio.security import Authenticator
 
 DATA = Path(__file__).resolve().parents[1] / 'data/demo'
 
@@ -115,6 +117,55 @@ def test_real_provider_selects_and_executes_grounded_product_tool():
         assert result.route.startswith('get_product | LLM tool call')
         assert 'R$ 2.199,00' in result.text
         assert 'fallback' not in result.route
+    finally:
+        a.close()
+        if a.router.client is not None:
+            a.router.client.close()
+
+
+@pytest.mark.live
+@pytest.mark.skipif(not (os.getenv('RUN_LIVE_LLM') == '1' and os.getenv('OPENAI_API_KEY')),
+                    reason='Real API test requires RUN_LIVE_LLM=1 and application OPENAI_API_KEY')
+@pytest.mark.parametrize('conversation', [
+    [('What is the price of Takamine GD20?', 'get_product', 'R$ 2.199,00'),
+     ('And with PIX?', 'get_product', 'R$ 2.089,05')],
+    [('Show acoustic guitars', 'find_products', 'Violões'),
+     ('And under R$ 500?', 'find_products', 'Tagima Memphis')],
+    [('Can I return an online purchase?', 'consult_policy', '7 calendar days'),
+     ('What are your opening hours?', 'consult_policy', 'Saturday')],
+])
+def test_real_provider_multiturn_tool_execution(conversation):
+    a = EmporioAgent(DATA, use_llm=True)
+    try:
+        for message, tool, expected in conversation:
+            reply = a.reply(message)
+            assert reply.route.startswith(f'{tool} | LLM tool call')
+            assert expected in reply.text
+            assert a.router.last_evidence['validated']
+            assert a.router.last_evidence['response_id']
+    finally:
+        a.close()
+        if a.router.client is not None:
+            a.router.client.close()
+
+
+@pytest.mark.live
+@pytest.mark.skipif(not (os.getenv('RUN_LIVE_LLM') == '1' and os.getenv('OPENAI_API_KEY')),
+                    reason='Real API test requires RUN_LIVE_LLM=1 and application OPENAI_API_KEY')
+def test_real_provider_session_preserves_local_order_boundary():
+    token = 'synthetic-test-token-customer-2-only'
+    a = EmporioAgent(DATA, use_llm=True,
+                     authenticator=Authenticator({hashlib.sha256(token.encode()).hexdigest(): 2}))
+    try:
+        assert a.authenticate(token)
+        reply = a.reply('What is the price of Takamine GD20?')
+        assert 'LLM tool call' in reply.route and a.router.last_evidence['validated']
+        assert 'shipped' in a.reply('order 8').text
+        assert a.router.last_evidence is None
+        assert "couldn't access" in a.reply('order 1').text
+        assert a.router.last_evidence is None
+        reply = a.reply('And with PIX?')
+        assert 'R$ 2.089,05' in reply.text and a.router.last_evidence['validated']
     finally:
         a.close()
         if a.router.client is not None:

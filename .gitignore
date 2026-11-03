@@ -17,9 +17,12 @@ dist/
 build/
 coverage.xml
 .coverage
+.coverage.*
 auth_tokens.json
 *.log
 /data/*
 !/data/README.md
 !/data/demo/
 *.pdf
+/tmp/
+/output/

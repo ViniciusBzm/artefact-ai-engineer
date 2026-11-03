@@ -39,6 +39,7 @@ class EmporioAgent:
         self.pending_order_id = None
         self.previous_category = self.previous_product = ""
         self._customer_id = None
+        self.router.last_evidence = None
 
     def close(self) -> None:
         self.reset()
@@ -145,6 +146,7 @@ class EmporioAgent:
         return Reply(message, "consult_policy", source)
 
     def reply(self, message: str) -> Reply:
+        self.router.last_evidence = None
         message = message.strip()
         if len(message) > 1500:
             return Reply("Please keep the request under 1,500 characters.", "input_rejected", "")

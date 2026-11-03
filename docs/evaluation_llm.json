@@ -1,0 +1,901 @@
+{
+  "executed_at_utc": "2026-11-02T20:16:40.740581+00:00",
+  "mode": "real LLM + local tools",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "cases": 26,
+  "passed": 26,
+  "requested_cases": 26,
+  "stopped_early": false,
+  "failed": 0,
+  "results": [
+    {
+      "id": "greeting",
+      "passed": true,
+      "problems": [],
+      "route": "greeting | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "greeting | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 583,
+              "output_tokens": 14,
+              "total_tokens": 597
+            },
+            "tool": "greeting",
+            "arguments": {},
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 2.9863
+    },
+    {
+      "id": "catalog_en",
+      "passed": true,
+      "problems": [],
+      "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv, categories.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 589,
+              "output_tokens": 29,
+              "total_tokens": 618
+            },
+            "tool": "find_products",
+            "arguments": {
+              "category": "Viol\u00f5es",
+              "max_price": 1000,
+              "keywords": ""
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 6.2716
+    },
+    {
+      "id": "catalog_pt",
+      "passed": true,
+      "problems": [],
+      "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv, categories.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 594,
+              "output_tokens": 29,
+              "total_tokens": 623
+            },
+            "tool": "find_products",
+            "arguments": {
+              "category": "Viol\u00f5es",
+              "max_price": 1000,
+              "keywords": ""
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 6.9337
+    },
+    {
+      "id": "brand_filter",
+      "passed": true,
+      "problems": [],
+      "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv, categories.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 590,
+              "output_tokens": 30,
+              "total_tokens": 620
+            },
+            "tool": "find_products",
+            "arguments": {
+              "category": "Viol\u00f5es",
+              "max_price": 1000,
+              "keywords": "Yamaha"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 7.0819
+    },
+    {
+      "id": "category_followup",
+      "passed": true,
+      "problems": [],
+      "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv, categories.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 585,
+              "output_tokens": 28,
+              "total_tokens": 613
+            },
+            "tool": "find_products",
+            "arguments": {
+              "category": "Viol\u00f5es",
+              "max_price": null,
+              "keywords": ""
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        },
+        {
+          "turn": 2,
+          "passed": true,
+          "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 604,
+              "output_tokens": 28,
+              "total_tokens": 632
+            },
+            "tool": "find_products",
+            "arguments": {
+              "category": "Viol\u00f5es",
+              "max_price": 500,
+              "keywords": ""
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 14.0032
+    },
+    {
+      "id": "exact_price",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 591,
+              "output_tokens": 21,
+              "total_tokens": 612
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Takamine GD20"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 6.8944
+    },
+    {
+      "id": "ambiguous_brand",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 588,
+              "output_tokens": 19,
+              "total_tokens": 607
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Yamaha"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 7.483
+    },
+    {
+      "id": "unknown_model",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 591,
+              "output_tokens": 21,
+              "total_tokens": 612
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Takamine XYZ999"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 6.5541
+    },
+    {
+      "id": "promotion_pix",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 593,
+              "output_tokens": 22,
+              "total_tokens": 615
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Crafter HT-100"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 7.0118
+    },
+    {
+      "id": "pix_followup",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 591,
+              "output_tokens": 21,
+              "total_tokens": 612
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Takamine GD20"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        },
+        {
+          "turn": 2,
+          "passed": true,
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 608,
+              "output_tokens": 26,
+              "total_tokens": 634
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Takamine GD20 Dreadnought Natural"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 14.2081
+    },
+    {
+      "id": "no_stock",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 594,
+              "output_tokens": 24,
+              "total_tokens": 618
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Giannini GF-3D"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 7.1275
+    },
+    {
+      "id": "discontinued",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 593,
+              "output_tokens": 23,
+              "total_tokens": 616
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Ibanez Bass 2X"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 7.0198
+    },
+    {
+      "id": "future_product",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 595,
+              "output_tokens": 25,
+              "total_tokens": 620
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Kala KA-ABP-CTG"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 7.1183
+    },
+    {
+      "id": "accessories",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "store policy page(s) 6; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "store policy page(s) 6; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 589,
+              "output_tokens": 20,
+              "total_tokens": 609
+            },
+            "tool": "consult_policy",
+            "arguments": {
+              "topic": "accessories"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 6.6204
+    },
+    {
+      "id": "returns",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "store policy page(s) 4; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "store policy page(s) 4; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 592,
+              "output_tokens": 19,
+              "total_tokens": 611
+            },
+            "tool": "consult_policy",
+            "arguments": {
+              "topic": "returns"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 6.9467
+    },
+    {
+      "id": "shipping_boundary",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "store policy page(s) 4, 5; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "store policy page(s) 4, 5; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 591,
+              "output_tokens": 19,
+              "total_tokens": 610
+            },
+            "tool": "consult_policy",
+            "arguments": {
+              "topic": "shipping"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 7.0621
+    },
+    {
+      "id": "installment_conflict",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "store policy page(s) 3; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "store policy page(s) 3; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 589,
+              "output_tokens": 20,
+              "total_tokens": 609
+            },
+            "tool": "consult_policy",
+            "arguments": {
+              "topic": "installments"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 6.8556
+    },
+    {
+      "id": "warranty",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "store policy page(s) 7; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "store policy page(s) 7; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 586,
+              "output_tokens": 20,
+              "total_tokens": 606
+            },
+            "tool": "consult_policy",
+            "arguments": {
+              "topic": "warranty"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 7.0525
+    },
+    {
+      "id": "hours",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "store policy page(s) 2; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "store policy page(s) 2; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 587,
+              "output_tokens": 19,
+              "total_tokens": 606
+            },
+            "tool": "consult_policy",
+            "arguments": {
+              "topic": "hours"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 6.8444
+    },
+    {
+      "id": "complaint",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "store policy page(s) 7; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "store policy page(s) 7; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 588,
+              "output_tokens": 20,
+              "total_tokens": 608
+            },
+            "tool": "consult_policy",
+            "arguments": {
+              "topic": "complaints"
+            },
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 7.1442
+    },
+    {
+      "id": "outside_scope",
+      "passed": true,
+      "problems": [],
+      "route": "out_of_scope | LLM tool call (gpt-5.4-mini-2026-03-17)",
+      "source": "",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "out_of_scope | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "",
+          "problems": [],
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 588,
+              "output_tokens": 15,
+              "total_tokens": 603
+            },
+            "tool": "out_of_scope",
+            "arguments": {},
+            "provider_response_recorded": true
+          },
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 6.8007
+    },
+    {
+      "id": "email_is_not_auth",
+      "passed": true,
+      "problems": [],
+      "route": "order_status | local authorization (NO LLM)",
+      "source": "",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": true
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "own_order",
+      "passed": true,
+      "problems": [],
+      "route": "order_status | local authorization (NO LLM)",
+      "source": "orders.csv, order_items.csv, products.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "orders.csv, order_items.csv, products.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": true
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "other_customer",
+      "passed": true,
+      "problems": [],
+      "route": "order_status | local authorization (NO LLM)",
+      "source": "orders.csv (ownership check)",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "orders.csv (ownership check)",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": true
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "nonexistent_order",
+      "passed": true,
+      "problems": [],
+      "route": "order_status | local authorization (NO LLM)",
+      "source": "orders.csv (ownership check)",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "orders.csv (ownership check)",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": true
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "pii_guard",
+      "passed": true,
+      "problems": [],
+      "route": "privacy_guard | local (NO LLM)",
+      "source": "",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "privacy_guard | local (NO LLM)",
+          "source": "",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": true
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    }
+  ],
+  "turns": 28,
+  "validated_provider_calls": 23,
+  "scope": "Fixed demo regression scenarios; not a production accuracy estimate"
+}

@@ -1,0 +1,527 @@
+{
+  "executed_at_utc": "2026-11-02T20:14:43.660709+00:00",
+  "mode": "offline rules (NO LLM)",
+  "model": null,
+  "cases": 26,
+  "passed": 26,
+  "requested_cases": 26,
+  "stopped_early": false,
+  "failed": 0,
+  "results": [
+    {
+      "id": "greeting",
+      "passed": true,
+      "problems": [],
+      "route": "greeting | offline rules (NO LLM)",
+      "source": "",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "greeting | offline rules (NO LLM)",
+          "source": "",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0006
+    },
+    {
+      "id": "catalog_en",
+      "passed": true,
+      "problems": [],
+      "route": "find_products | offline rules (NO LLM)",
+      "source": "products.csv, categories.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "find_products | offline rules (NO LLM)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0017
+    },
+    {
+      "id": "catalog_pt",
+      "passed": true,
+      "problems": [],
+      "route": "find_products | offline rules (NO LLM)",
+      "source": "products.csv, categories.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "find_products | offline rules (NO LLM)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0007
+    },
+    {
+      "id": "brand_filter",
+      "passed": true,
+      "problems": [],
+      "route": "find_products | offline rules (NO LLM)",
+      "source": "products.csv, categories.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "find_products | offline rules (NO LLM)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0007
+    },
+    {
+      "id": "category_followup",
+      "passed": true,
+      "problems": [],
+      "route": "find_products | offline rules (NO LLM)",
+      "source": "products.csv, categories.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "find_products | offline rules (NO LLM)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        },
+        {
+          "turn": 2,
+          "passed": true,
+          "route": "find_products | offline rules (NO LLM)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0014
+    },
+    {
+      "id": "exact_price",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | offline rules (NO LLM)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | offline rules (NO LLM)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.001
+    },
+    {
+      "id": "ambiguous_brand",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | offline rules (NO LLM)",
+      "source": "products.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | offline rules (NO LLM)",
+          "source": "products.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0008
+    },
+    {
+      "id": "unknown_model",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | offline rules (NO LLM)",
+      "source": "products.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | offline rules (NO LLM)",
+          "source": "products.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0008
+    },
+    {
+      "id": "promotion_pix",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | offline rules (NO LLM)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | offline rules (NO LLM)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0008
+    },
+    {
+      "id": "pix_followup",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | offline rules (NO LLM)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | offline rules (NO LLM)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        },
+        {
+          "turn": 2,
+          "passed": true,
+          "route": "get_product | offline rules (NO LLM)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0016
+    },
+    {
+      "id": "no_stock",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | offline rules (NO LLM)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | offline rules (NO LLM)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0014
+    },
+    {
+      "id": "discontinued",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | offline rules (NO LLM)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | offline rules (NO LLM)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0013
+    },
+    {
+      "id": "future_product",
+      "passed": true,
+      "problems": [],
+      "route": "get_product | offline rules (NO LLM)",
+      "source": "products.csv, promotions.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "get_product | offline rules (NO LLM)",
+          "source": "products.csv, promotions.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0014
+    },
+    {
+      "id": "accessories",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | offline rules (NO LLM)",
+      "source": "store policy page(s) 6; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | offline rules (NO LLM)",
+          "source": "store policy page(s) 6; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "returns",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | offline rules (NO LLM)",
+      "source": "store policy page(s) 4; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | offline rules (NO LLM)",
+          "source": "store policy page(s) 4; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "shipping_boundary",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | offline rules (NO LLM)",
+      "source": "store policy page(s) 4, 5; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | offline rules (NO LLM)",
+          "source": "store policy page(s) 4, 5; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "installment_conflict",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | offline rules (NO LLM)",
+      "source": "store policy page(s) 3; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | offline rules (NO LLM)",
+          "source": "store policy page(s) 3; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "warranty",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | offline rules (NO LLM)",
+      "source": "store policy page(s) 7; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | offline rules (NO LLM)",
+          "source": "store policy page(s) 7; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "hours",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | offline rules (NO LLM)",
+      "source": "store policy page(s) 2; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | offline rules (NO LLM)",
+          "source": "store policy page(s) 2; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "complaint",
+      "passed": true,
+      "problems": [],
+      "route": "consult_policy | offline rules (NO LLM)",
+      "source": "store policy page(s) 7; sha256 56beafcc4406",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "consult_policy | offline rules (NO LLM)",
+          "source": "store policy page(s) 7; sha256 56beafcc4406",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "outside_scope",
+      "passed": true,
+      "problems": [],
+      "route": "out_of_scope | offline rules (NO LLM)",
+      "source": "",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "out_of_scope | offline rules (NO LLM)",
+          "source": "",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": false
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "email_is_not_auth",
+      "passed": true,
+      "problems": [],
+      "route": "order_status | local authorization (NO LLM)",
+      "source": "",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": true
+        }
+      ],
+      "elapsed_seconds": 0.0
+    },
+    {
+      "id": "own_order",
+      "passed": true,
+      "problems": [],
+      "route": "order_status | local authorization (NO LLM)",
+      "source": "orders.csv, order_items.csv, products.csv",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "orders.csv, order_items.csv, products.csv",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": true
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "other_customer",
+      "passed": true,
+      "problems": [],
+      "route": "order_status | local authorization (NO LLM)",
+      "source": "orders.csv (ownership check)",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "orders.csv (ownership check)",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": true
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "nonexistent_order",
+      "passed": true,
+      "problems": [],
+      "route": "order_status | local authorization (NO LLM)",
+      "source": "orders.csv (ownership check)",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "orders.csv (ownership check)",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": true
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    },
+    {
+      "id": "pii_guard",
+      "passed": true,
+      "problems": [],
+      "route": "privacy_guard | local (NO LLM)",
+      "source": "",
+      "turns": [
+        {
+          "turn": 1,
+          "passed": true,
+          "route": "privacy_guard | local (NO LLM)",
+          "source": "",
+          "problems": [],
+          "tool_call": null,
+          "local_security_path": true
+        }
+      ],
+      "elapsed_seconds": 0.0001
+    }
+  ],
+  "turns": 28,
+  "validated_provider_calls": 0,
+  "scope": "Fixed demo regression scenarios; not a production accuracy estimate"
+}

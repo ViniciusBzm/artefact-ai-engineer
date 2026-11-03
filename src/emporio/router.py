@@ -6,6 +6,8 @@ import json
 import math
 import os
 import re
+import time
+from pathlib import Path
 
 from .store import norm
 from .policy import POLICIES, topic_from_text
@@ -107,14 +109,38 @@ class ProviderError(RuntimeError):
     """Sanitized provider failure: no SDK response bodies or credentials."""
 
 
+_last_provider_started: float | None = None
+
+
+def pace_provider() -> None:
+    """Optional process-wide spacing for the sequential CLI/evaluation workload.
+
+    This is not an organization-wide token, daily-quota or concurrent-user limiter.
+    The live runner configures seven seconds for the observed 10 RPM account.
+    """
+    global _last_provider_started
+    interval = float(os.environ.get('EMPORIO_MIN_REQUEST_INTERVAL_SECONDS', '0'))
+    if not math.isfinite(interval) or not 0 <= interval <= 60:
+        raise ValueError('Request interval must be finite and between 0 and 60 seconds')
+    if interval == 0:
+        return
+    if _last_provider_started is not None:
+        remaining = _last_provider_started + interval - time.monotonic()
+        if remaining > 0:
+            time.sleep(remaining)
+    _last_provider_started = time.monotonic()
+
+
 @dataclass
 class Router:
     use_llm: bool = False
     model: str = field(default_factory=lambda: os.environ.get("OPENAI_MODEL", "gpt-5.4-mini-2026-03-17"))
     allow_fallback: bool = False
     client: object | None = field(default=None, repr=False)
+    last_evidence: dict | None = field(default=None, init=False, repr=False)
 
     def route(self, question: str, history: list[tuple[str, str]], previous_category: str = "", previous_product: str = "") -> tuple[str, dict, str]:
+        self.last_evidence = None
         if not self.use_llm:
             name, args = classify(question, previous_category, previous_product)
             validate_call(name, args)
@@ -123,6 +149,14 @@ class Router:
             if self.client is None:
                 from openai import OpenAI
                 self.client = OpenAI(base_url="https://api.openai.com/v1", timeout=20.0, max_retries=0)
+            pace_provider()
+            budget_path = os.getenv('EMPORIO_LIVE_BUDGET_FILE')
+            ticket = None
+            if budget_path:
+                from .budget import reserve
+                ticket = reserve(Path(budget_path), self.model)
+            self.last_evidence = {'provider_requested': True, 'validated': False,
+                                  'requested_model': self.model}
             response = self.client.responses.create(
                 model=self.model, store=False, max_output_tokens=1200,
                 instructions=("You route customer requests for Emporio da Musica, an instrument retailer. "
@@ -130,19 +164,48 @@ class Router:
                               "Never infer identity, prices, discounts, or authorization. No SQL or external actions. "
                               "Use the current message for intent; context only resolves short follow-ups. "
                               "For a specific product extract only its model/brand; keep brand in catalog filters. "
-                              "For returns distinguish general policy from orders. Accessories are not sold. "
+                              "When previous_product is set, a short follow-up about PIX price or stock must select "
+                              "get_product with that product model, so the local tool calculates its actual price. "
+                              "Use payment policy for general payment-method questions without a product-price follow-up. "
+                              "For returns distinguish general policy from orders. For any accessory request "
+                              "(strings, picks, cables, pedals, amplifiers or cases), select consult_policy "
+                              "with topic accessories to explain the store restriction; do not use out_of_scope for accessories. "
                               "Use out_of_scope for unrelated queries; consult_policy/complaints for complaints. "
                               "Do not produce an answer, only choose a tool."),
                 input=[{"role": "user", "content": json.dumps({"message": question, "previous_category": previous_category,
                         "previous_product": previous_product, "recent_tool_context": history[-4:]}, ensure_ascii=False)}],
                 tools=TOOL_SPEC, tool_choice="required", parallel_tool_calls=False)
+            if ticket is not None:
+                from .budget import settle
+                settle(Path(budget_path), ticket, response)
+            usage = getattr(response, 'usage', None)
+            self.last_evidence.update({
+                'response_id': response.id, 'response_model': response.model,
+                'status': response.status,
+                'usage': {key: getattr(usage, key, None) for key in
+                          ['input_tokens', 'output_tokens', 'total_tokens']} if usage else None,
+            })
             calls = [c for c in response.output if c.type == 'function_call']
             if response.status != 'completed' or len(calls) != 1:
                 raise ValueError("Expected exactly one completed function call")
             name, args = calls[0].name, json.loads(calls[0].arguments)
             validate_call(name, args)
+            # No raw prompt, credentials, or source customer data is recorded.
+            self.last_evidence.update({'validated': True, 'tool': name, 'arguments': args})
             return name, args, f"LLM tool call ({self.model})"
         except Exception as error:
+            if self.last_evidence is not None:
+                # SDK exception messages can contain key fragments. Retain only
+                # allowlisted error categories and scope names, never the body.
+                known_codes = {'invalid_api_key', 'insufficient_permissions', 'model_not_found',
+                               'insufficient_quota', 'rate_limit_exceeded', 'credit_balance_exhausted'}
+                code = getattr(error, 'code', None)
+                self.last_evidence['error'] = {
+                    'type': type(error).__name__, 'http_status': getattr(error, 'status_code', None),
+                    'code': code if isinstance(code, str) and code in known_codes else None,
+                    'known_missing_scopes': [scope for scope in ['api.responses.write', 'api.model.request', 'model.request']
+                                             if scope in str(error) and 'missing' in str(error).lower()],
+                }
             if not self.allow_fallback:
                 raise ProviderError(f"LLM unavailable or invalid tool response ({type(error).__name__})") from None
             name, args = classify(question, previous_category, previous_product)

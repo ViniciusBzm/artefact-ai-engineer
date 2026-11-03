@@ -12,8 +12,17 @@ dependencies = []
 [project.optional-dependencies]
 llm = ["openai>=2.0,<3"]
 pdf = ["pypdf>=5,<7"]
-test = ["pytest>=8,<10", "httpx>=0.27,<1", "openai>=2.0,<3", "pypdf>=5,<7"]
-all = ["openai>=2.0,<3", "pypdf>=5,<7", "pytest>=8,<10", "httpx>=0.27,<1"]
+test = ["pytest>=8,<10", "httpx>=0.27,<1", "openai>=2.0,<3", "pypdf>=5,<7", "coverage>=7,<8"]
+all = ["openai>=2.0,<3", "pypdf>=5,<7", "pytest>=8,<10", "httpx>=0.27,<1", "coverage>=7,<8"]
+
+[tool.coverage.run]
+branch = true
+source = ["emporio"]
+parallel = true
+patch = ["subprocess"]
+
+[tool.coverage.report]
+show_missing = true
 
 [project.scripts]
 emporio = "emporio.cli:main"
