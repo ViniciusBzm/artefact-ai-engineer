@@ -2,11 +2,13 @@
 
 A Python text agent for a musical-instrument store. It answers catalog, price, stock, promotion, order and policy questions using supplied data snapshots and reviewed policy evidence.
 
-In **LLM mode**, OpenAI interprets a message and selects a structured tool. Python validates the call, queries the data, applies business rules and renders the factual answer. **Offline mode** uses explicit deterministic rules and requires no API key. It is useful for demonstration and regression checks; it is not an LLM.
+OpenAI interprets each message and selects a structured tool. Python validates the call, queries the data, applies business rules and renders the factual answer. An optional offline mode supports demonstrations and regression checks without an API key.
+
+Start with the recorded conversations: [catalog and follow-up](examples/01_catalog_under_budget.md), [promotion and PIX rules](examples/02_product_and_nonstacking_discount.md), [order access](examples/03_order_privacy_multiturn.md), [returns](examples/04_online_returns_policy.md) and [scope handling](examples/05_out_of_scope.md). Four use the real OpenAI API; the order example demonstrates local authorization.
 
 ## Installation and first conversation
 
-Requires Python 3.10+. Recorded local verification used Windows/Python 3.12. CI is configured for Python 3.10/3.12 on Linux; inspect the repository's Actions tab for remote run results. Run from the project directory.
+Requires Python 3.10+. Recorded local verification used Windows/Python 3.12. CI is configured for Python 3.10/3.12 on Linux; inspect the repository's Actions tab for remote run results. Run from the project directory. The first commands below use the offline demo; the following section enables the model.
 
 Windows PowerShell:
 
@@ -32,15 +34,19 @@ The default demo data is self-contained. A minimal offline install is `python -m
 
 ## Real LLM mode
 
-Provider: OpenAI Responses API. Pinned model: `gpt-5.4-mini-2026-03-17`. An application API key with Responses write permission, model access and API billing is required. No credential is distributed. Export `OPENAI_API_KEY` privately; do not put its value in a command, screenshot or versioned file.
+Provider: OpenAI Responses API. Pinned model: `gpt-5.4-mini-2026-03-17`. Configure an application API key with Responses access and API billing. In PowerShell, the following prompt hides the key and keeps its value out of command history:
 
 ```powershell
-# After setting OPENAI_API_KEY privately in this terminal:
+$taskApiKey = Read-Host "OpenAI API key" -AsSecureString
+$env:OPENAI_API_KEY = [System.Net.NetworkCredential]::new('', $taskApiKey).Password
+$taskApiKey = $null
 $env:OPENAI_MODEL = "gpt-5.4-mini-2026-03-17"
 .\.venv\Scripts\emporio.exe --llm --question "What is the price of Takamine GD20?" --debug
+# Interactive conversation:
+.\.venv\Scripts\emporio.exe --llm
 ```
 
-The optional Windows helper `& .\scripts\configure_openai_key.ps1` accepts hidden input and writes only to ignored `.local/openai_api_key.txt`. This is a local plaintext file, not a secret vault. Protect it with OS permissions. The verification runner reads that file or the environment; the direct `emporio --llm` command reads the environment only.
+The optional Windows helper `& .\scripts\configure_openai_key.ps1` saves the key in ignored `.local/openai_api_key.txt` for the verification runner. Protect this plaintext file with OS permissions and remove it after use. The interactive CLI reads `OPENAI_API_KEY` from the environment.
 
 ```powershell
 # Preflight only: no provider call
@@ -51,7 +57,7 @@ The optional Windows helper `& .\scripts\configure_openai_key.ps1` accepts hidde
 .\.venv\Scripts\python.exe scripts\run_live_checks.py --run --full-suite
 ```
 
-`--run` attempts one smoke call. `--full-suite` additionally selects five real integration cases and the 26-scenario evaluation. The runner has a persistent local spend guard, pacing and zero SDK retries; see [verification controls](docs/VALIDATION.md). Direct CLI/API runs are outside that guard unless `EMPORIO_LIVE_BUDGET_FILE` is explicitly configured. A provider error fails visibly; fallback is available only with explicit `--allow-fallback` and is labeled as offline. Skipped tests and fallback never establish real-model success.
+`--run` performs one smoke call; `--run --full-suite` selects five real integration cases and the 26-scenario evaluation. The runner applies a persistent local spending allowance and request pacing; see [verification controls](docs/VALIDATION.md). Direct CLI calls use the allowance only when `EMPORIO_LIVE_BUDGET_FILE` is configured. Provider errors are visible, and optional `--allow-fallback` is labeled as offline.
 
 ## Architecture and decisions
 
@@ -64,9 +70,9 @@ Explicit order IDs → local authentication and ownership query → Python respo
 ```
 
 - **Python and SQLite:** six small tables do not require a distributed agent framework. Queries are fixed and parameterized; the serving database is read-only. No arbitrary SQL, shell or write tool is exposed to the model.
-- **LLM function calling:** strict tool schemas, one required function call and local validation make interpretation inspectable. The model receives public input and bounded tool context; it supplies neither factual prices nor authorization decisions. A small pinned model limits cost and version drift. No comparative model benchmark is claimed.
+- **LLM function calling:** strict tool schemas, one required function call and local validation make interpretation inspectable. The model receives public input and bounded tool context. Python supplies factual prices and authorization decisions. A small pinned model keeps the routing task economical and versioned.
 - **Deterministic answers:** Python renders queried facts and reviewed policy text. This constrains phrasing and planning, but prevents model-generated prices, invented order states and fabricated action confirmations.
-- **Policy retrieval:** the selected topic retrieves reviewed pages/sections and their source digest. Answers use reviewed English translations with citations. This is section-based retrieval, not embedding RAG or unrestricted PDF question answering. Source fingerprints prevent changed documents from receiving stale answers.
+- **Policy retrieval:** the selected topic retrieves reviewed pages/sections and their source digest. The short manual supports direct section retrieval without an embedding service. Answers use reviewed English translations with citations; changed source fingerprints require review before reuse.
 - **Decimal pricing:** `ROUND_HALF_UP` makes cent rounding explicit. Only active promotions apply, and PIX never stacks with promotional discounts.
 - **Session memory:** only the last category/model and four tool/source pairs are retained. Raw transcripts and order results are not saved in session history.
 
@@ -98,9 +104,9 @@ To use separately supplied original files, place the six CSVs and `políticas_da
 
 Live tests require both `RUN_LIVE_LLM=1` and `OPENAI_API_KEY`; the opt-in runner sets them for its subprocesses. Two optional original-source checks require `EMPORIO_SOURCE_DIR`. Without private sources or live opt-in, those seven cases skip. Mocked HTTP tests exercise the real SDK serializer, errors, timeouts and invalid calls without contacting a provider.
 
-[Validation evidence](docs/VALIDATION.md) distinguishes local regression checks from the previously executed real-provider verification. The application source is unchanged in this documentation export; no new real-provider run was performed for the export. The fixed evaluation covers 26 scenarios and 28 turns; success is not a general accuracy score.
+[Validation evidence](docs/VALIDATION.md) records the current regression checks, the newly recorded live conversations and the earlier full LLM evaluation. The fixed evaluation covers 26 scenarios and 28 turns.
 
-Five recorded, executable English conversations are in [examples/](examples/): catalog follow-up, pricing and non-stacking discounts, order privacy, returns/shipping ambiguity, and out-of-scope/accessory requests. They explicitly identify their offline mode.
+The five English conversations linked above contain actual messages, answers and tool/source traces. The [execution receipt](docs/examples_llm.json) records seven validated provider calls and four local order-security turns. To record another live set, run `python examples/generate_examples.py --llm` with `OPENAI_API_KEY` configured; this makes seven billable requests. Running the generator without `--llm` writes offline examples to `.local/examples-offline/` and preserves the published live transcripts.
 
 ## Limitations and future work
 

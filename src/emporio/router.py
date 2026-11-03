@@ -78,7 +78,7 @@ def tool(name: str, description: str, properties: dict) -> dict:
 
 
 TOOL_SPEC = [
-    tool("find_products", "Search available instruments in the supplied snapshot, retaining brand/model filters. English acoustic/classical guitar = Violões; electric guitar = Guitarras.",
+    tool("find_products", "Search available instruments. Put instrument type in category and the price ceiling in max_price. Set keywords only to an explicitly requested brand or model, otherwise an empty string; omit generic instrument/type/budget words. English acoustic/classical guitar = Violões; electric guitar = Guitarras.",
          {"category": {"type": "string"}, "max_price": {"type": ["number", "null"]}, "keywords": {"type": "string"}}),
     tool("get_product", "Look up a specific model. Extract only brand and model tokens, no payment or conversational words. Brand-only ambiguity asks for clarification.", {"query": {"type": "string"}}),
     tool("order_status", "Check a specific order through local authenticated session. Never supply identity or order identifiers as arguments.", {}),
@@ -116,7 +116,7 @@ def pace_provider() -> None:
     """Optional process-wide spacing for the sequential CLI/evaluation workload.
 
     This is not an organization-wide token, daily-quota or concurrent-user limiter.
-    The live runner configures seven seconds for the observed 10 RPM account.
+    The live runner configures seven seconds between sequential requests.
     """
     global _last_provider_started
     interval = float(os.environ.get('EMPORIO_MIN_REQUEST_INTERVAL_SECONDS', '0'))
@@ -164,6 +164,8 @@ class Router:
                               "Never infer identity, prices, discounts, or authorization. No SQL or external actions. "
                               "Use the current message for intent; context only resolves short follow-ups. "
                               "For a specific product extract only its model/brand; keep brand in catalog filters. "
+                              "For catalog searches, keywords contains only an explicitly requested brand or model, "
+                              "otherwise an empty string. Instrument type belongs in category; price belongs in max_price. "
                               "When previous_product is set, a short follow-up about PIX price or stock must select "
                               "get_product with that product model, so the local tool calculates its actual price. "
                               "Use payment policy for general payment-method questions without a product-price follow-up. "

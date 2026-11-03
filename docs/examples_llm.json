@@ -1,0 +1,256 @@
+{
+  "executed_at_utc": "2026-11-03T20:49:13.254188+00:00",
+  "mode": "real LLM + local tools",
+  "model": "gpt-5.4-mini-2026-03-17",
+  "validated_provider_calls": 7,
+  "local_security_turns": 4,
+  "conversations": [
+    {
+      "id": "01_catalog_under_budget",
+      "turns": [
+        {
+          "message": "Show acoustic guitars under R$ 1000",
+          "response": "Here are up to 8 matching available option(s) (limited to 8) in Violões for up to R$ 1.000,00:\n- Tagima Memphis AC-39 Nylon Natural — R$ 429,90; 15 in stock\n- Rozini RC-104 Nylon Estudante — R$ 459,90; 10 in stock\n- Shelby SN-100 Folk Aço Preto — R$ 549,00; 5 in stock\n- Giannini GF-1R Aço Folk Sunburst — R$ 579,90; 7 in stock\n- Yamaha C40 Nylon Natural — R$ 599,90; 12 in stock\n- Giannini GN-15 Nylon Cedr Natural — R$ 689,00; 6 in stock\n- Yamaha F310 Aço Natural — R$ 699,90; 14 in stock\n- Tagima Dallas Tuner Aço Natural — R$ 749,00; 9 in stock\n\nPrices and stock reflect the supplied dataset snapshot, not a live storefront.",
+          "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 650,
+              "output_tokens": 29,
+              "total_tokens": 679
+            },
+            "tool": "find_products",
+            "arguments": {
+              "category": "Violões",
+              "max_price": 1000,
+              "keywords": ""
+            }
+          },
+          "local_security_path": false,
+          "passed": true,
+          "problems": []
+        },
+        {
+          "message": "And under R$ 500?",
+          "response": "Here are up to 2 matching available option(s) (limited to 8) in Violões for up to R$ 500,00:\n- Tagima Memphis AC-39 Nylon Natural — R$ 429,90; 15 in stock\n- Rozini RC-104 Nylon Estudante — R$ 459,90; 10 in stock\n\nPrices and stock reflect the supplied dataset snapshot, not a live storefront.",
+          "route": "find_products | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, categories.csv, promotions.csv",
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 663,
+              "output_tokens": 28,
+              "total_tokens": 691
+            },
+            "tool": "find_products",
+            "arguments": {
+              "category": "Violões",
+              "max_price": 500,
+              "keywords": ""
+            }
+          },
+          "local_security_path": false,
+          "passed": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "id": "02_product_and_nonstacking_discount",
+      "turns": [
+        {
+          "message": "What is the price of Crafter HT-100?",
+          "response": "Crafter HT-100 Folk Aço Natural — R$ 1.967,18 (was R$ 2.399,00, 18% active promotion); 3 in stock. Prices and stock reflect the supplied snapshot. Anything else I can help you with?",
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, promotions.csv",
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 651,
+              "output_tokens": 22,
+              "total_tokens": 673
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Crafter HT-100"
+            }
+          },
+          "local_security_path": false,
+          "passed": true,
+          "problems": []
+        },
+        {
+          "message": "And with PIX?",
+          "response": "Crafter HT-100 Folk Aço Natural — R$ 1.967,18 (was R$ 2.399,00, 18% active promotion); 3 in stock. The additional 5% PIX discount cannot be combined with this promotion. Prices and stock reflect the supplied snapshot. Anything else I can help you with?",
+          "route": "get_product | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "products.csv, promotions.csv",
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 667,
+              "output_tokens": 26,
+              "total_tokens": 693
+            },
+            "tool": "get_product",
+            "arguments": {
+              "query": "Crafter HT-100 Folk Aço Natural"
+            }
+          },
+          "local_security_path": false,
+          "passed": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "id": "03_order_privacy_multiturn",
+      "turns": [
+        {
+          "message": "What is the status of order 8?",
+          "response": "To protect order details, please sign in through /login using your support token. An email address or claimed customer ID cannot authorize access.",
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "",
+          "tool_call": null,
+          "local_security_path": true,
+          "passed": true,
+          "problems": []
+        },
+        {
+          "message": "order 8 customer002@example.test",
+          "response": "To protect order details, please sign in through /login using your support token. An email address or claimed customer ID cannot authorize access.",
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "",
+          "tool_call": null,
+          "local_security_path": true,
+          "passed": true,
+          "problems": []
+        },
+        {
+          "event": "local_login",
+          "synthetic_customer_id": 2
+        },
+        {
+          "message": "order 8",
+          "response": "Order #8: shipped. Recorded total: R$ 349,90. Ordered on 2026-01-02. Tracking reference: DEMO-TRACK-0008. The stored estimated delivery date was 2026-01-05 (this may be outdated). Items: 1 × Kala KA-C Concert Mogno. This is a case-study snapshot, not a live carrier lookup.",
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "orders.csv, order_items.csv, products.csv",
+          "tool_call": null,
+          "local_security_path": true,
+          "passed": true,
+          "problems": []
+        },
+        {
+          "message": "Show order 1",
+          "response": "I couldn't access that order for this signed-in account. Please check the order number or contact our support team.",
+          "route": "order_status | local authorization (NO LLM)",
+          "source": "orders.csv (ownership check)",
+          "tool_call": null,
+          "local_security_path": true,
+          "passed": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "id": "04_online_returns_policy",
+      "turns": [
+        {
+          "message": "I regret my online purchase. Can I return it?",
+          "response": "For online purchases, you may request a change-of-mind return within 7 calendar days of receiving the product. Keep the original packaging, manuals and accessories, without signs of use. The store covers return shipping and refunds via the original payment method within 10 business days. We need the delivery date and purchase channel to assess your specific case. [Store manual, p. 4] Was the purchase online, and on what date did you receive the item?",
+          "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "store policy page(s) 4; sha256 96d9c4c379f9",
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 651,
+              "output_tokens": 19,
+              "total_tokens": 670
+            },
+            "tool": "consult_policy",
+            "arguments": {
+              "topic": "returns"
+            }
+          },
+          "local_security_path": false,
+          "passed": true,
+          "problems": []
+        }
+      ]
+    },
+    {
+      "id": "05_out_of_scope",
+      "turns": [
+        {
+          "message": "What's the weather on Mars?",
+          "response": "I can help with musical instruments, product availability, orders and store policies. What would you like to know?",
+          "route": "out_of_scope | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "",
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 646,
+              "output_tokens": 15,
+              "total_tokens": 661
+            },
+            "tool": "out_of_scope",
+            "arguments": {}
+          },
+          "local_security_path": false,
+          "passed": true,
+          "problems": []
+        },
+        {
+          "message": "Do you sell strings for acoustic guitars?",
+          "response": "We specialize in musical instruments only; we do not sell strings, picks, cables, cases, pedals or amplifiers. [Store manual, p. 6]",
+          "route": "consult_policy | LLM tool call (gpt-5.4-mini-2026-03-17)",
+          "source": "store policy page(s) 6; sha256 96d9c4c379f9",
+          "tool_call": {
+            "provider_requested": true,
+            "validated": true,
+            "requested_model": "gpt-5.4-mini-2026-03-17",
+            "response_model": "gpt-5.4-mini-2026-03-17",
+            "status": "completed",
+            "usage": {
+              "input_tokens": 654,
+              "output_tokens": 20,
+              "total_tokens": 674
+            },
+            "tool": "consult_policy",
+            "arguments": {
+              "topic": "accessories"
+            }
+          },
+          "local_security_path": false,
+          "passed": true,
+          "problems": []
+        }
+      ]
+    }
+  ],
+  "response_ids": "Omitted from the public receipt; retained in the private execution record."
+}

@@ -62,8 +62,8 @@ def topic_from_text(question: str) -> str | None:
 
 
 APPROVED_PDF_SHA256 = 'b7527f96896929f4ba929de117651c6717e25b7a3b92b34bc54d5ba32f6156f7'
-APPROVED_DEMO_SHA256 = '56beafcc4406a683bf8227aab6bf8886970e5aa0c5bc1d882010d15e21888a04'
-EXTRA_PAGES = {'contact': [2], 'defects': [7], 'shipping': [5], 'privacy': [8]}
+APPROVED_DEMO_SHA256 = '96d9c4c379f9cc3301a11cb559befd163fc53c48752afef472d5a73b17ce3f1a'
+EXTRA_PAGES = {'contact': [2], 'payment': [6], 'defects': [7], 'shipping': [5], 'privacy': [8]}
 
 
 @dataclass(frozen=True)

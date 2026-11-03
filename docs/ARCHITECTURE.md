@@ -22,13 +22,13 @@
 5. Python validates tool name, required/extra properties, enums, text limits and finite numeric bounds. No model-provided identity, SQL or write operation can be executed.
 6. A fixed local query or policy lookup returns the facts. Python renders the answer and source trace.
 
-There is no autonomous planning loop or second model call to synthesize an answer. This small tool-routing design fits the data size and makes the business rules testable. Its cost is restricted language generation and one main intent per turn.
+Each public request uses one tool-selection call followed by local execution. This fits the data size and makes the business rules testable, with one main intent per turn and constrained response wording.
 
 ## Prompt strategy
 
-Instructions separate intent selection from factual execution. User text and session context are untrusted; the model must choose a function rather than answer. Short PIX/stock follow-ups use the previous product through `get_product`, while general payment questions use policy retrieval. Accessory requests select the dedicated accessories policy. Current-message intent takes priority over earlier context.
+Instructions separate intent selection from factual execution. User text and session context are untrusted; the model selects a function. Catalog searches put instrument type in `category`, price in `max_price` and only an explicit brand/model in `keywords`. Short PIX/stock follow-ups use the previous product through `get_product`, while general payment questions use policy retrieval. Accessory requests select the dedicated accessories policy. Current-message intent takes priority over earlier context.
 
-The API uses a pinned model, `store=False`, strict schemas, `tool_choice=required`, `parallel_tool_calls=False`, a 1,200-output-token cap, a 20-second timeout and zero SDK retries. These settings do not establish security by themselves: code validates the call, and local ownership checks remain authoritative. Model errors are explicit; optional fallback is visibly labeled and rejected as live-evaluation success.
+The API uses a pinned model, `store=False`, strict schemas, `tool_choice=required`, `parallel_tool_calls=False`, a 1,200-output-token cap, a 20-second timeout and zero SDK retries. Code validates the call, and local ownership checks remain authoritative. Model errors are explicit; optional fallback is labeled as offline.
 
 ## Prices and availability
 
@@ -40,7 +40,7 @@ Order totals are shown as recorded, independently of current catalog pricing. Co
 
 ## Policy retrieval
 
-`PolicyBook.retrieve` loads the page/section for a reviewed topic and attaches its source digest. Customer-facing text is a fixed reviewed English translation. This avoids an embedding service and unconstrained generated policy claims for a short manual. It does not support arbitrary questions over arbitrary PDFs.
+`PolicyBook.retrieve` loads the page/section for a reviewed topic and attaches its source digest. Customer-facing text is a fixed reviewed English translation. Direct section retrieval keeps this short manual inspectable without an embedding service. The bundled English extract preserves the monetary conditions and delivery windows used in answers. Payment answers cite both page 3 and the non-stacking rule on page 6.
 
 The original PDF is byte-hash pinned. The demo text fixture normalizes LF/CRLF only. Modified policy content fails closed until reviewed summaries, fingerprints and tests are updated. Conflicting installment tiers, shipping at exactly R$500 and inconsistent contact details are made explicit.
 
@@ -52,4 +52,4 @@ Explicit order IDs and results stay local. Detected personal input is withheld f
 
 ## Evidence and scope
 
-Offline classification is explicit and reproducible. Mocked SDK transport checks protocol behavior and validation; real-provider fixtures separately test language interpretation and tool use. The same fixed scenarios are not independent observations of production accuracy. See [validation](VALIDATION.md) and [limitations](LIMITATIONS.md).
+Offline classification is reproducible. Mocked SDK transport checks protocol behavior and validation; recorded API conversations demonstrate language interpretation and tool use. See [validation](VALIDATION.md) for the results and their evaluation scope, and [limitations](LIMITATIONS.md) for the prototype boundaries.

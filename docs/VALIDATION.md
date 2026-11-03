@@ -1,23 +1,28 @@
 # Validation and reproducibility
 
-## Executed real-provider verification
+## Current verification — 3 November 2026
 
-The unchanged application source was verified on 2 November 2026 against OpenAI Responses API and pinned `gpt-5.4-mini-2026-03-17`, with fallback disabled:
-
-| Check | Observed result |
+| Check | Result |
 |---|---|
-| Real integration | 5/5 cases passed: one product lookup, three multi-message conversations and one mixed model/local-order session |
-| Real agent evaluation | 26/26 scenarios, all 28 turns checked; 23 validated provider calls; remaining turns followed local security paths |
-| Local suite with private original sources | 135 passed, 5 live cases skipped and executed separately |
-| Public-fixture regression before this export | 133 passed, 7 skipped: 5 live and 2 requiring separately supplied private sources |
-| Offline evaluation | 26/26 scenarios, all 28 turns checked, zero provider calls |
-| Prior branch/subprocess coverage | 712/783 statements (90.93%); 251/292 branches (85.96%); package only |
+| Public-fixture test suite | 138 passed, 7 skipped: 5 opt-in live cases and 2 requiring original inputs |
+| Original-source integration | Both optional checks passed separately against the supplied CSVs and PDF |
+| Recorded conversations | Five conversations, 11 customer turns: seven validated OpenAI calls and four local order-security turns |
+| Offline evaluation | 26/26 scenarios, all 28 turns checked |
+| CLI and data contracts | Product lookup and six-table audit passed |
 
-These are measured fixed-fixture results, not production accuracy or a security certification. Live testing exposed PIX-follow-up and accessory-routing issues; instructions were corrected and the full verification was repeated successfully.
+The [verification receipt](revision_verification.json) records these checks and the [current application hashes](application_source_sha256.json). The five conversations in [examples/](../examples/) show actual messages, responses and tool/source traces. Their [execution receipt](examples_llm.json) includes the selected tools and token usage; provider response IDs are retained privately.
 
-This documentation export did **not** make new provider calls. [Application hashes](application_source_sha256.json) bind the unchanged source files to the verified implementation. The [real evaluation receipt](evaluation_llm.json) retains validated tool calls and token usage; provider response identifiers were omitted from the public copy. Full original receipts remain local. The [offline receipt](evaluation_offline.json) clearly identifies rule-based execution.
+The bundled policy extract was checked against manual version 2.1, pages 2–8. Regression tests now verify that installment and shipping amounts in answers also occur in the cited passages. The catalog instructions explicitly separate instrument categories, price ceilings and brand/model filters.
 
-The export's current local regression results are recorded in [export verification](export_verification.json). They are separate from the earlier live execution.
+## Earlier full live evaluation — 2 November 2026
+
+| Check | Recorded result |
+|---|---|
+| Real integration | 5/5 cases passed: product lookup, three multi-message conversations and a mixed model/local-order session |
+| Real agent evaluation | 26/26 scenarios, 28 checked turns and 23 validated provider calls |
+| Package coverage | 712/783 statements (90.93%); 251/292 branches (85.96%) |
+
+These results describe the earlier implementation, before the policy-extract and catalog-instruction corrections. Its [evaluation receipt](evaluation_llm.json) and [source manifest](https://github.com/ViniciusBzm/artefact-ai-engineer/blob/c1ddc41f30bccf0bc689986d8ac244a4b9eb1d46/docs/application_source_sha256.json) remain available. The current live verification is the seven-call conversation recording above. Both runs used OpenAI Responses API with `gpt-5.4-mini-2026-03-17` and fallback disabled. Evaluation covers fixed case-study scenarios; broader language and adversarial testing remain future work.
 
 ## Repeat local checks
 
@@ -28,14 +33,16 @@ The export's current local regression results are recorded in [export verificati
 .\.venv\Scripts\python.exe examples\generate_examples.py
 ```
 
-No key is needed for those commands. Private-source tests require `EMPORIO_SOURCE_DIR`; live tests require both `RUN_LIVE_LLM=1` and `OPENAI_API_KEY`. Without these inputs, seven cases skip. The SDK mock transport exercises serialization, timeouts, 401/429/500 errors, malformed calls and forbidden arguments without provider access. Skipping, fallback and a successful preflight never establish live success.
+These commands run without an API key. The example generator writes offline transcripts to `.local/examples-offline/`, preserving the published live set. Private-source checks use `EMPORIO_SOURCE_DIR`. The five full live integration cases require `RUN_LIVE_LLM=1` and `OPENAI_API_KEY`. Mocked HTTP tests cover serialization, timeouts, 401/429/500 responses, malformed calls and forbidden arguments.
 
-For coverage, run `python -m coverage run -m pytest -q`, `python -m coverage combine`, then `python -m coverage report`. Scripts outside the application package are not included in the reported package percentage.
+To record the current live examples again, configure `OPENAI_API_KEY` and run `python examples/generate_examples.py --llm`. It makes seven provider requests, validates every turn and replaces the transcripts only after the complete set passes. Its execution receipt defaults to ignored `.local/examples-run.json`. To use the spending guard, point `EMPORIO_LIVE_BUDGET_FILE` at a ledger initialized by the verification runner.
 
-## Optional paid verification controls
+For package coverage, run `python -m coverage run -m pytest -q`, `python -m coverage combine`, then `python -m coverage report`.
 
-`scripts/run_live_checks.py` defaults to credential/dependency preflight without API access. `--run` opts into one smoke request. `--run --full-suite` selects integration followed by evaluation. The first integration failure or provider/tool evaluation error stops that stage. SDK automatic retries are zero; requests are spaced seven seconds by default. This is process-local pacing, not an organization-wide daily/token limiter.
+## Optional live verification controls
 
-The runner uses a persistent local **USD 1 default verification allowance**, shared across its subprocesses, with an additional 80-attempt ceiling. Before each request it reserves the full 400,000-token model context plus 1,200 maximum output tokens, using the published input/output prices and a 25% margin. A valid usage receipt reconciles the reservation; missing or invalid usage retains it. Re-running does not reset the ledger. A file lock fails closed on competing writers or a stale lock after a crash.
+`scripts/run_live_checks.py` defaults to credential/dependency preflight. `--run` performs one smoke request; `--run --full-suite` runs live integration followed by evaluation. SDK retries are disabled, requests are spaced seven seconds by default, and a provider or validation failure stops that stage.
 
-Only the explicitly priced pinned model is supported by this guard. Review prices and assumptions before changing model or reusing the runner in a different environment. It does not control direct CLI traffic unless `EMPORIO_LIVE_BUDGET_FILE` is configured, other applications, taxes or account-wide usage. No credentials, account balances or payment data are distributed.
+The runner uses a persistent USD 1 allowance shared across subprocesses, with an 80-attempt ceiling. Each request reserves the model's 400,000-token context plus 1,200 output tokens at the configured rates with a 25% margin. Reported usage reconciles the reservation; missing usage retains it. Re-running preserves the ledger, and file locking prevents competing writers.
+
+The guard supports the explicitly priced pinned model. Review rates before changing the model or reusing the runner. Its scope is requests using `EMPORIO_LIVE_BUDGET_FILE`; direct CLI calls need that configuration. Request pacing is process-local. The earlier publication checks remain in [export verification](export_verification.json).

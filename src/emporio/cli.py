@@ -1,4 +1,4 @@
-"""Text interface suitable for local demonstrations and interviews."""
+"""Text interface for local agent conversations."""
 from __future__ import annotations
 
 import argparse
@@ -23,7 +23,7 @@ def main() -> None:
     parser.add_argument("--allow-fallback", action="store_true", help="Explicitly allow labeled offline fallback when LLM routing fails")
     args = parser.parse_args()
     if args.llm and not os.getenv("OPENAI_API_KEY"):
-        parser.error("--llm requires OPENAI_API_KEY (API billing is separate from ChatGPT subscriptions)")
+        parser.error("--llm requires OPENAI_API_KEY")
     try:
         agent = EmporioAgent(args.data_dir, use_llm=args.llm,
                              authenticator=Authenticator.from_file(args.auth_file), allow_fallback=args.allow_fallback)

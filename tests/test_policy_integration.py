@@ -1,6 +1,7 @@
 import hashlib
 import os
 from pathlib import Path
+import re
 import shutil
 
 import pytest
@@ -41,6 +42,16 @@ def test_ambiguous_rules_are_not_silently_resolved():
     assert 'exactly R$ 500 is unspecified' in b.lookup('shipping')[0]
     assert 'ambiguous' in b.lookup('installments')[0]
     assert 'both' in b.lookup('contact')[0]
+
+
+@pytest.mark.parametrize('topic', ['installments', 'shipping'])
+def test_answer_currency_amounts_are_present_in_cited_demo_passages(topic):
+    book = PolicyBook(DATA)
+    answer, _ = book.lookup(topic)
+    source = ' '.join(p.text for p in book.retrieve(topic))
+    amounts = set(re.findall(r'R\$\s*[\d,]+(?:\.\d+)?', answer))
+    assert amounts, 'The financial policy answer must exercise monetary evidence'
+    assert amounts <= set(re.findall(r'R\$\s*[\d,]+(?:\.\d+)?', source))
 
 
 SOURCE = os.environ.get('EMPORIO_SOURCE_DIR')

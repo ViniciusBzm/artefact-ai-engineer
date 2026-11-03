@@ -79,7 +79,7 @@ def main():
     parser.add_argument('--run', action='store_true', help='Make at most one billable smoke-test request, without retries')
     parser.add_argument('--full-suite', action='store_true', help='Explicit additional opt-in: run full integration/evaluation after reviewing quota and cost')
     parser.add_argument('--interval-seconds', type=float, default=7.0,
-                        help='Minimum spacing between provider requests (default 7s for the observed 10 RPM limit)')
+                        help='Minimum spacing between provider requests (default 7s)')
     args = parser.parse_args()
     if args.full_suite and not args.run:
         parser.error('--full-suite requires --run and explicit operator review of cost/quota')

@@ -1,0 +1,41 @@
+{
+  "executed_at_utc": "2026-11-03T20:51:20.703265+00:00",
+  "public_fixture_tests": {
+    "collected": 145,
+    "passed": 138,
+    "skipped": 7,
+    "failed": 0
+  },
+  "optional_original_source_checks": {
+    "passed": 2,
+    "failed": 0
+  },
+  "offline_evaluation": {
+    "cases": 26,
+    "passed": 26,
+    "failed": 0,
+    "turns": 28,
+    "validated_provider_calls": 0
+  },
+  "recorded_examples": {
+    "conversations": 5,
+    "customer_turns": 11,
+    "validated_provider_calls": 7,
+    "local_security_turns": 4,
+    "recorded_at_utc": "2026-11-03T20:49:13.254188+00:00"
+  },
+  "policy_extract_review": "Checked against supplied manual v2.1, pages 2-8; monetary source-alignment regressions passed.",
+  "cli_product_lookup": "Takamine GD20 returned R$ 2.199,00 and its source trace.",
+  "application_source_sha256": {
+    "src/emporio/__init__.py": "2b6c33a6776e283dab33a5390093a9e6b301b7a157719b31e2130f7dafaf9087",
+    "src/emporio/agent.py": "8a79742b835a953da39bad3bd1b98c0a8d301c730236688ce8c7e52e906a4642",
+    "src/emporio/audit.py": "175b15ac2098295193e2eecd775659aecbaa69e26b59fa73e84fbdce767be08b",
+    "src/emporio/budget.py": "856c4362677b8a4ab7489c4ef931b40c665386d14885648b7356aa9aa02c65df",
+    "src/emporio/cli.py": "ad84d2b0cad1ae15d01139c249a5f07b0bc0c5c781c228fde994a53c74e33bfb",
+    "src/emporio/evaluation.py": "4e052b04b39227af725ebcdd94490bcaed37bf1d90cc2a94bd95b4d2b9b2f85e",
+    "src/emporio/policy.py": "47c4831a607a80cb4944d8eb2de75eff776bcae604bd0ce43260bf562af423d2",
+    "src/emporio/router.py": "6d93d1bb8d31ac70acf702bdb8b01ad2dc6e0afd8ce72d17b84f44d4d7c2fbdb",
+    "src/emporio/security.py": "711f65ac1dbb8e0566baf9f53784803a8a409651f58ccdf0ee45306e7f219525",
+    "src/emporio/store.py": "2bfb3a8085debcd294efc46898b7215739a7567632a7d432f018a08fb6878546"
+  }
+}

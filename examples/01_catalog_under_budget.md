@@ -1,7 +1,8 @@
 # 01 Catalog Under Budget
 
-Recorded by the executable **offline demonstration router (NO LLM)**.
-Data: non-personal catalog snapshot and entirely synthetic customer/order fixtures. Responses are in English.
+Execution: OpenAI Responses API, gpt-5.4-mini-2026-03-17, with local tools.
+Recorded at 2026-11-03T20:49:13.254188+00:00 (UTC).
+Dataset: supplied catalog and synthetic customer/order records.
 
 **Customer:** Show acoustic guitars under R$ 1000
 
@@ -17,7 +18,7 @@ Data: non-personal catalog snapshot and entirely synthetic customer/order fixtur
 
 Prices and stock reflect the supplied dataset snapshot, not a live storefront.
 
-*Tool path:* `find_products | offline rules (NO LLM)`
+*Tool path:* find_products | LLM tool call (gpt-5.4-mini-2026-03-17)
 
 *Source:* products.csv, categories.csv, promotions.csv
 
@@ -31,7 +32,7 @@ Prices and stock reflect the supplied dataset snapshot, not a live storefront.
 
 Prices and stock reflect the supplied dataset snapshot, not a live storefront.
 
-*Tool path:* `find_products | offline rules (NO LLM)`
+*Tool path:* find_products | LLM tool call (gpt-5.4-mini-2026-03-17)
 
 *Source:* products.csv, categories.csv, promotions.csv
 

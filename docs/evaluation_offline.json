@@ -1,5 +1,5 @@
 {
-  "executed_at_utc": "2026-11-02T20:14:43.660709+00:00",
+  "executed_at_utc": "2026-11-03T20:51:20.357400+00:00",
   "mode": "offline rules (NO LLM)",
   "model": null,
   "cases": 26,
@@ -63,7 +63,7 @@
           "local_security_path": false
         }
       ],
-      "elapsed_seconds": 0.0007
+      "elapsed_seconds": 0.0008
     },
     {
       "id": "brand_filter",
@@ -129,7 +129,7 @@
           "local_security_path": false
         }
       ],
-      "elapsed_seconds": 0.001
+      "elapsed_seconds": 0.0009
     },
     {
       "id": "ambiguous_brand",
@@ -148,7 +148,7 @@
           "local_security_path": false
         }
       ],
-      "elapsed_seconds": 0.0008
+      "elapsed_seconds": 0.0009
     },
     {
       "id": "unknown_model",
@@ -271,20 +271,20 @@
           "local_security_path": false
         }
       ],
-      "elapsed_seconds": 0.0014
+      "elapsed_seconds": 0.0013
     },
     {
       "id": "accessories",
       "passed": true,
       "problems": [],
       "route": "consult_policy | offline rules (NO LLM)",
-      "source": "store policy page(s) 6; sha256 56beafcc4406",
+      "source": "store policy page(s) 6; sha256 96d9c4c379f9",
       "turns": [
         {
           "turn": 1,
           "passed": true,
           "route": "consult_policy | offline rules (NO LLM)",
-          "source": "store policy page(s) 6; sha256 56beafcc4406",
+          "source": "store policy page(s) 6; sha256 96d9c4c379f9",
           "problems": [],
           "tool_call": null,
           "local_security_path": false
@@ -297,13 +297,13 @@
       "passed": true,
       "problems": [],
       "route": "consult_policy | offline rules (NO LLM)",
-      "source": "store policy page(s) 4; sha256 56beafcc4406",
+      "source": "store policy page(s) 4; sha256 96d9c4c379f9",
       "turns": [
         {
           "turn": 1,
           "passed": true,
           "route": "consult_policy | offline rules (NO LLM)",
-          "source": "store policy page(s) 4; sha256 56beafcc4406",
+          "source": "store policy page(s) 4; sha256 96d9c4c379f9",
           "problems": [],
           "tool_call": null,
           "local_security_path": false
@@ -316,13 +316,13 @@
       "passed": true,
       "problems": [],
       "route": "consult_policy | offline rules (NO LLM)",
-      "source": "store policy page(s) 4, 5; sha256 56beafcc4406",
+      "source": "store policy page(s) 4, 5; sha256 96d9c4c379f9",
       "turns": [
         {
           "turn": 1,
           "passed": true,
           "route": "consult_policy | offline rules (NO LLM)",
-          "source": "store policy page(s) 4, 5; sha256 56beafcc4406",
+          "source": "store policy page(s) 4, 5; sha256 96d9c4c379f9",
           "problems": [],
           "tool_call": null,
           "local_security_path": false
@@ -335,13 +335,13 @@
       "passed": true,
       "problems": [],
       "route": "consult_policy | offline rules (NO LLM)",
-      "source": "store policy page(s) 3; sha256 56beafcc4406",
+      "source": "store policy page(s) 3; sha256 96d9c4c379f9",
       "turns": [
         {
           "turn": 1,
           "passed": true,
           "route": "consult_policy | offline rules (NO LLM)",
-          "source": "store policy page(s) 3; sha256 56beafcc4406",
+          "source": "store policy page(s) 3; sha256 96d9c4c379f9",
           "problems": [],
           "tool_call": null,
           "local_security_path": false
@@ -354,13 +354,13 @@
       "passed": true,
       "problems": [],
       "route": "consult_policy | offline rules (NO LLM)",
-      "source": "store policy page(s) 7; sha256 56beafcc4406",
+      "source": "store policy page(s) 7; sha256 96d9c4c379f9",
       "turns": [
         {
           "turn": 1,
           "passed": true,
           "route": "consult_policy | offline rules (NO LLM)",
-          "source": "store policy page(s) 7; sha256 56beafcc4406",
+          "source": "store policy page(s) 7; sha256 96d9c4c379f9",
           "problems": [],
           "tool_call": null,
           "local_security_path": false
@@ -373,13 +373,13 @@
       "passed": true,
       "problems": [],
       "route": "consult_policy | offline rules (NO LLM)",
-      "source": "store policy page(s) 2; sha256 56beafcc4406",
+      "source": "store policy page(s) 2; sha256 96d9c4c379f9",
       "turns": [
         {
           "turn": 1,
           "passed": true,
           "route": "consult_policy | offline rules (NO LLM)",
-          "source": "store policy page(s) 2; sha256 56beafcc4406",
+          "source": "store policy page(s) 2; sha256 96d9c4c379f9",
           "problems": [],
           "tool_call": null,
           "local_security_path": false
@@ -392,13 +392,13 @@
       "passed": true,
       "problems": [],
       "route": "consult_policy | offline rules (NO LLM)",
-      "source": "store policy page(s) 7; sha256 56beafcc4406",
+      "source": "store policy page(s) 7; sha256 96d9c4c379f9",
       "turns": [
         {
           "turn": 1,
           "passed": true,
           "route": "consult_policy | offline rules (NO LLM)",
-          "source": "store policy page(s) 7; sha256 56beafcc4406",
+          "source": "store policy page(s) 7; sha256 96d9c4c379f9",
           "problems": [],
           "tool_call": null,
           "local_security_path": false
