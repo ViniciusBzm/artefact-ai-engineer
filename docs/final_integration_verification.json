@@ -1,0 +1,386 @@
+{
+  "started_at_utc": "2026-11-03T21:30:11.332133+00:00",
+  "finished_at_utc": "2026-11-03T21:31:11.368701+00:00",
+  "source_commit": "3759ff427cb767d49a7a6700240282e4d0a42fce",
+  "application_source_sha256": {
+    "src/emporio/__init__.py": "2b6c33a6776e283dab33a5390093a9e6b301b7a157719b31e2130f7dafaf9087",
+    "src/emporio/agent.py": "8a79742b835a953da39bad3bd1b98c0a8d301c730236688ce8c7e52e906a4642",
+    "src/emporio/audit.py": "175b15ac2098295193e2eecd775659aecbaa69e26b59fa73e84fbdce767be08b",
+    "src/emporio/budget.py": "856c4362677b8a4ab7489c4ef931b40c665386d14885648b7356aa9aa02c65df",
+    "src/emporio/cli.py": "ad84d2b0cad1ae15d01139c249a5f07b0bc0c5c781c228fde994a53c74e33bfb",
+    "src/emporio/evaluation.py": "4e052b04b39227af725ebcdd94490bcaed37bf1d90cc2a94bd95b4d2b9b2f85e",
+    "src/emporio/policy.py": "47c4831a607a80cb4944d8eb2de75eff776bcae604bd0ce43260bf562af423d2",
+    "src/emporio/router.py": "6d93d1bb8d31ac70acf702bdb8b01ad2dc6e0afd8ce72d17b84f44d4d7c2fbdb",
+    "src/emporio/security.py": "711f65ac1dbb8e0566baf9f53784803a8a409651f58ccdf0ee45306e7f219525",
+    "src/emporio/store.py": "2bfb3a8085debcd294efc46898b7215739a7567632a7d432f018a08fb6878546"
+  },
+  "model": "gpt-5.4-mini-2026-03-17",
+  "tests": [
+    {
+      "nodeid": "tests/test_llm_integration.py::test_real_provider_selects_and_executes_grounded_product_tool",
+      "group": "live",
+      "result": "passed",
+      "provider_attempts": 1,
+      "validated_provider_calls": 1,
+      "input_tokens": 651,
+      "output_tokens": 21,
+      "estimated_cost_usd": "0.00058275",
+      "budget_charge_usd": "0.0007284375",
+      "usage_receipts": [
+        {
+          "state": "reported_usage",
+          "budget_charge_usd": "0.0007284375",
+          "input_tokens": 651,
+          "output_tokens": 21,
+          "estimated_cost_usd": "0.00058275",
+          "total_tokens": 672,
+          "cached_input_tokens": 0
+        }
+      ],
+      "calls": [
+        {
+          "provider_requested": true,
+          "validated": true,
+          "requested_model": "gpt-5.4-mini-2026-03-17",
+          "response_model": "gpt-5.4-mini-2026-03-17",
+          "status": "completed",
+          "usage": {
+            "input_tokens": 651,
+            "output_tokens": 21,
+            "total_tokens": 672
+          },
+          "tool": "get_product",
+          "arguments": {
+            "query": "Takamine GD20"
+          }
+        }
+      ],
+      "label": "Product lookup"
+    },
+    {
+      "nodeid": "tests/test_llm_integration.py::test_real_provider_multiturn_tool_execution[conversation0]",
+      "group": "live",
+      "result": "passed",
+      "provider_attempts": 2,
+      "validated_provider_calls": 2,
+      "input_tokens": 1317,
+      "output_tokens": 47,
+      "estimated_cost_usd": "0.00119925",
+      "budget_charge_usd": "0.0014990625",
+      "usage_receipts": [
+        {
+          "state": "reported_usage",
+          "budget_charge_usd": "0.0007275000",
+          "input_tokens": 650,
+          "output_tokens": 21,
+          "estimated_cost_usd": "0.00058200",
+          "total_tokens": 671,
+          "cached_input_tokens": 0
+        },
+        {
+          "state": "reported_usage",
+          "budget_charge_usd": "0.0007715625",
+          "input_tokens": 667,
+          "output_tokens": 26,
+          "estimated_cost_usd": "0.00061725",
+          "total_tokens": 693,
+          "cached_input_tokens": 0
+        }
+      ],
+      "calls": [
+        {
+          "provider_requested": true,
+          "validated": true,
+          "requested_model": "gpt-5.4-mini-2026-03-17",
+          "response_model": "gpt-5.4-mini-2026-03-17",
+          "status": "completed",
+          "usage": {
+            "input_tokens": 650,
+            "output_tokens": 21,
+            "total_tokens": 671
+          },
+          "tool": "get_product",
+          "arguments": {
+            "query": "Takamine GD20"
+          }
+        },
+        {
+          "provider_requested": true,
+          "validated": true,
+          "requested_model": "gpt-5.4-mini-2026-03-17",
+          "response_model": "gpt-5.4-mini-2026-03-17",
+          "status": "completed",
+          "usage": {
+            "input_tokens": 667,
+            "output_tokens": 26,
+            "total_tokens": 693
+          },
+          "tool": "get_product",
+          "arguments": {
+            "query": "Takamine GD20 Dreadnought Natural"
+          }
+        }
+      ],
+      "label": "Product and PIX follow-up"
+    },
+    {
+      "nodeid": "tests/test_llm_integration.py::test_real_provider_multiturn_tool_execution[conversation1]",
+      "group": "live",
+      "result": "passed",
+      "provider_attempts": 2,
+      "validated_provider_calls": 2,
+      "input_tokens": 1307,
+      "output_tokens": 56,
+      "estimated_cost_usd": "0.00123225",
+      "budget_charge_usd": "0.0015403125",
+      "usage_receipts": [
+        {
+          "state": "reported_usage",
+          "budget_charge_usd": "0.0007612500",
+          "input_tokens": 644,
+          "output_tokens": 28,
+          "estimated_cost_usd": "0.00060900",
+          "total_tokens": 672,
+          "cached_input_tokens": 0
+        },
+        {
+          "state": "reported_usage",
+          "budget_charge_usd": "0.0007790625",
+          "input_tokens": 663,
+          "output_tokens": 28,
+          "estimated_cost_usd": "0.00062325",
+          "total_tokens": 691,
+          "cached_input_tokens": 0
+        }
+      ],
+      "calls": [
+        {
+          "provider_requested": true,
+          "validated": true,
+          "requested_model": "gpt-5.4-mini-2026-03-17",
+          "response_model": "gpt-5.4-mini-2026-03-17",
+          "status": "completed",
+          "usage": {
+            "input_tokens": 644,
+            "output_tokens": 28,
+            "total_tokens": 672
+          },
+          "tool": "find_products",
+          "arguments": {
+            "category": "Viol�es",
+            "max_price": null,
+            "keywords": ""
+          }
+        },
+        {
+          "provider_requested": true,
+          "validated": true,
+          "requested_model": "gpt-5.4-mini-2026-03-17",
+          "response_model": "gpt-5.4-mini-2026-03-17",
+          "status": "completed",
+          "usage": {
+            "input_tokens": 663,
+            "output_tokens": 28,
+            "total_tokens": 691
+          },
+          "tool": "find_products",
+          "arguments": {
+            "category": "Viol�es",
+            "max_price": 500,
+            "keywords": ""
+          }
+        }
+      ],
+      "label": "Catalog and budget follow-up"
+    },
+    {
+      "nodeid": "tests/test_llm_integration.py::test_real_provider_multiturn_tool_execution[conversation2]",
+      "group": "live",
+      "result": "passed",
+      "provider_attempts": 2,
+      "validated_provider_calls": 2,
+      "input_tokens": 1318,
+      "output_tokens": 38,
+      "estimated_cost_usd": "0.00115950",
+      "budget_charge_usd": "0.0014493750",
+      "usage_receipts": [
+        {
+          "state": "reported_usage",
+          "budget_charge_usd": "0.0007134375",
+          "input_tokens": 647,
+          "output_tokens": 19,
+          "estimated_cost_usd": "0.00057075",
+          "total_tokens": 666,
+          "cached_input_tokens": 0
+        },
+        {
+          "state": "reported_usage",
+          "budget_charge_usd": "0.0007359375",
+          "input_tokens": 671,
+          "output_tokens": 19,
+          "estimated_cost_usd": "0.00058875",
+          "total_tokens": 690,
+          "cached_input_tokens": 0
+        }
+      ],
+      "calls": [
+        {
+          "provider_requested": true,
+          "validated": true,
+          "requested_model": "gpt-5.4-mini-2026-03-17",
+          "response_model": "gpt-5.4-mini-2026-03-17",
+          "status": "completed",
+          "usage": {
+            "input_tokens": 647,
+            "output_tokens": 19,
+            "total_tokens": 666
+          },
+          "tool": "consult_policy",
+          "arguments": {
+            "topic": "returns"
+          }
+        },
+        {
+          "provider_requested": true,
+          "validated": true,
+          "requested_model": "gpt-5.4-mini-2026-03-17",
+          "response_model": "gpt-5.4-mini-2026-03-17",
+          "status": "completed",
+          "usage": {
+            "input_tokens": 671,
+            "output_tokens": 19,
+            "total_tokens": 690
+          },
+          "tool": "consult_policy",
+          "arguments": {
+            "topic": "hours"
+          }
+        }
+      ],
+      "label": "Returns and opening-hours conversation"
+    },
+    {
+      "nodeid": "tests/test_llm_integration.py::test_real_provider_session_preserves_local_order_boundary",
+      "group": "live",
+      "result": "passed",
+      "provider_attempts": 2,
+      "validated_provider_calls": 2,
+      "input_tokens": 1317,
+      "output_tokens": 47,
+      "estimated_cost_usd": "0.00119925",
+      "budget_charge_usd": "0.0014990625",
+      "usage_receipts": [
+        {
+          "state": "reported_usage",
+          "budget_charge_usd": "0.0007275000",
+          "input_tokens": 650,
+          "output_tokens": 21,
+          "estimated_cost_usd": "0.00058200",
+          "total_tokens": 671,
+          "cached_input_tokens": 0
+        },
+        {
+          "state": "reported_usage",
+          "budget_charge_usd": "0.0007715625",
+          "input_tokens": 667,
+          "output_tokens": 26,
+          "estimated_cost_usd": "0.00061725",
+          "total_tokens": 693,
+          "cached_input_tokens": 0
+        }
+      ],
+      "calls": [
+        {
+          "provider_requested": true,
+          "validated": true,
+          "requested_model": "gpt-5.4-mini-2026-03-17",
+          "response_model": "gpt-5.4-mini-2026-03-17",
+          "status": "completed",
+          "usage": {
+            "input_tokens": 650,
+            "output_tokens": 21,
+            "total_tokens": 671
+          },
+          "tool": "get_product",
+          "arguments": {
+            "query": "Takamine GD20"
+          }
+        },
+        {
+          "provider_requested": true,
+          "validated": true,
+          "requested_model": "gpt-5.4-mini-2026-03-17",
+          "response_model": "gpt-5.4-mini-2026-03-17",
+          "status": "completed",
+          "usage": {
+            "input_tokens": 667,
+            "output_tokens": 26,
+            "total_tokens": 693
+          },
+          "tool": "get_product",
+          "arguments": {
+            "query": "Takamine GD20 Dreadnought Natural"
+          }
+        }
+      ],
+      "label": "Mixed model/local-order session"
+    },
+    {
+      "nodeid": "tests/test_policy_integration.py::test_original_sources_all_policy_topics_and_order_ownership",
+      "group": "original_private",
+      "result": "passed",
+      "provider_attempts": 0,
+      "validated_provider_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "estimated_cost_usd": "0",
+      "budget_charge_usd": "0",
+      "usage_receipts": [],
+      "calls": [],
+      "label": "Original files: policy topics and order ownership"
+    },
+    {
+      "nodeid": "tests/test_policy_integration.py::test_original_pdf_changed_without_heading_change_is_rejected",
+      "group": "original_private",
+      "result": "passed",
+      "provider_attempts": 0,
+      "validated_provider_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "estimated_cost_usd": "0",
+      "budget_charge_usd": "0",
+      "usage_receipts": [],
+      "calls": [],
+      "label": "Modified original PDF rejected"
+    }
+  ],
+  "summary": {
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "live_tests_passed": 5,
+    "original_source_tests_passed": 2,
+    "real_provider_calls": 9,
+    "validated_provider_calls": 9,
+    "input_tokens": 5910,
+    "output_tokens": 209,
+    "total_tokens": 6119,
+    "estimated_cost_usd": "0.00537300",
+    "budget_charge_with_margin_usd": "0.0067162500"
+  },
+  "pricing": {
+    "input_usd_per_million_tokens": "0.75000000",
+    "output_usd_per_million_tokens": "4.5000000",
+    "margin": "1.25",
+    "estimate_uses_full_input_rate": true
+  },
+  "budget_controls": {
+    "cumulative_limit_usd": "1.00",
+    "authorized_additional_attempts": 9,
+    "previous_usage_preserved": true,
+    "existing_reserve_and_settle_used": true,
+    "sdk_retries": 0,
+    "request_spacing_seconds": 7
+  },
+  "privacy": "Original input files, credentials, absolute private paths and provider response IDs are omitted."
+}

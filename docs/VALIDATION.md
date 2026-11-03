@@ -1,6 +1,6 @@
 # Validation and reproducibility
 
-## Current verification — 3 November 2026
+## Current verification � 3 November 2026
 
 | Check | Result |
 |---|---|
@@ -12,9 +12,29 @@
 
 The [verification receipt](revision_verification.json) records these checks and the [current application hashes](application_source_sha256.json). The five conversations in [examples/](../examples/) show actual messages, responses and tool/source traces. Their [execution receipt](examples_llm.json) includes the selected tools and token usage; provider response IDs are retained privately.
 
-The bundled policy extract was checked against manual version 2.1, pages 2–8. Regression tests now verify that installment and shipping amounts in answers also occur in the cited passages. The catalog instructions explicitly separate instrument categories, price ceilings and brand/model filters.
+The bundled policy extract was checked against manual version 2.1, pages 2�8. Regression tests now verify that installment and shipping amounts in answers also occur in the cited passages. The catalog instructions explicitly separate instrument categories, price ceilings and brand/model filters.
 
-## Earlier full live evaluation — 2 November 2026
+## Final integration verification � 3 November 2026
+
+All seven opt-in checks passed on commit `3759ff4` using `gpt-5.4-mini-2026-03-17`. The five live tests ran first, followed by the two checks against the original private files. The application and test source files were unchanged during execution.
+
+| Test | Result | API calls | Input tokens | Output tokens | Estimated USD |
+|---|---|---:|---:|---:|---:|
+| Product lookup | Passed | 1 | 651 | 21 | 0.00058275 |
+| Product and PIX follow-up | Passed | 2 | 1317 | 47 | 0.00119925 |
+| Catalog and budget follow-up | Passed | 2 | 1307 | 56 | 0.00123225 |
+| Returns and opening-hours conversation | Passed | 2 | 1318 | 38 | 0.00115950 |
+| Mixed model/local-order session | Passed | 2 | 1317 | 47 | 0.00119925 |
+| Original files: policy topics and order ownership | Passed | 0 | 0 | 0 | 0 |
+| Modified original PDF rejected | Passed | 0 | 0 | 0 | 0 |
+
+Total: **9 validated API calls, 5,910 input tokens and 209 output tokens; estimated cost USD 0.00537300**. The spending guard accounted for USD 0.0067162500 including its 25% margin. The original-file checks made zero API calls.
+
+Costs use the configured rates of USD 0.75 per million input tokens and USD 4.50 per million output tokens, charging all input at the full input rate. They are token-based estimates. The existing reserve/settle mechanism, seven-second spacing, zero SDK retries and cumulative USD 1 allowance were retained; the nine additional attempts were explicitly authorized.
+
+The [per-test and per-call receipt](final_integration_verification.json) records the seven results, usage and estimates. Private inputs, credentials and provider response IDs are excluded. The standard suite keeps these checks opt-in; their default skip status is separate from this successful execution.
+
+## Earlier full live evaluation � 2 November 2026
 
 | Check | Recorded result |
 |---|---|
@@ -22,7 +42,7 @@ The bundled policy extract was checked against manual version 2.1, pages 2–8. 
 | Real agent evaluation | 26/26 scenarios, 28 checked turns and 23 validated provider calls |
 | Package coverage | 712/783 statements (90.93%); 251/292 branches (85.96%) |
 
-These results describe the earlier implementation, before the policy-extract and catalog-instruction corrections. Its [evaluation receipt](evaluation_llm.json) and [source manifest](https://github.com/ViniciusBzm/artefact-ai-engineer/blob/c1ddc41f30bccf0bc689986d8ac244a4b9eb1d46/docs/application_source_sha256.json) remain available. The current live verification is the seven-call conversation recording above. Both runs used OpenAI Responses API with `gpt-5.4-mini-2026-03-17` and fallback disabled. Evaluation covers fixed case-study scenarios; broader language and adversarial testing remain future work.
+These results describe the earlier implementation, before the policy-extract and catalog-instruction corrections. Its [evaluation receipt](evaluation_llm.json) and [source manifest](https://github.com/ViniciusBzm/artefact-ai-engineer/blob/c1ddc41f30bccf0bc689986d8ac244a4b9eb1d46/docs/application_source_sha256.json) remain available. The current live evidence includes the nine-call integration run and the seven-call conversation recording above. Both runs used OpenAI Responses API with `gpt-5.4-mini-2026-03-17` and fallback disabled. Evaluation covers fixed case-study scenarios; broader language and adversarial testing remain future work.
 
 ## Repeat local checks
 
