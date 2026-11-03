@@ -1,8 +1,17 @@
 # Empório da Música — Customer-Service Agent
 
-A Python text agent for a musical-instrument store. It answers catalog, price, stock, promotion, order and policy questions using supplied data snapshots and reviewed policy evidence.
+Store support questions combine changing catalog data, discount rules, order privacy and written policies. This Python agent answers from the supplied snapshots and reviewed policy evidence, with explicit limits when the data cannot support an answer.
 
-OpenAI interprets each message and selects a structured tool. Python validates the call, queries the data, applies business rules and renders the factual answer. An optional offline mode supports demonstrations and regression checks without an API key.
+OpenAI selects a structured tool for each message. Python validates the call, queries read-only SQLite data, enforces pricing and order-access rules, and renders the answer with a source trace. The offline router runs the same business logic for demonstrations and regression checks without an API key.
+
+| Evidence on the current version | Result |
+|---|---|
+| Default pytest suite | 138 passed; 7 opt-in cases skipped |
+| Opt-in integration executed separately | 5/5 cases with the real API; 2/2 checks with the private original files |
+| Recorded evaluation | 26/26 offline scenarios, covering 28 turns |
+| CI | [Python 3.10 and 3.12 run passed](https://github.com/ViniciusBzm/artefact-ai-engineer/actions/runs/41727429776) |
+
+The [validation report](docs/VALIDATION.md) distinguishes current executions from earlier results and records the live-call usage and estimated costs. The private original files are not in this repository.
 
 Start with the recorded conversations: [catalog and follow-up](examples/01_catalog_under_budget.md), [promotion and PIX rules](examples/02_product_and_nonstacking_discount.md), [order access](examples/03_order_privacy_multiturn.md), [returns](examples/04_online_returns_policy.md) and [scope handling](examples/05_out_of_scope.md). Four use the real OpenAI API; the order example demonstrates local authorization.
 
