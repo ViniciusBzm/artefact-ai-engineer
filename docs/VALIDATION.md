@@ -1,6 +1,6 @@
 # Validation and reproducibility
 
-## Current verification � 3 November 2026
+## Current verification — 3 November 2026
 
 | Check | Result |
 |---|---|
@@ -12,9 +12,9 @@
 
 The [verification receipt](revision_verification.json) records these checks and the [current application hashes](application_source_sha256.json). The five conversations in [examples/](../examples/) show actual messages, responses and tool/source traces. Their [execution receipt](examples_llm.json) includes the selected tools and token usage; provider response IDs are retained privately.
 
-The bundled policy extract was checked against manual version 2.1, pages 2�8. Regression tests now verify that installment and shipping amounts in answers also occur in the cited passages. The catalog instructions explicitly separate instrument categories, price ceilings and brand/model filters.
+The bundled policy extract was checked against manual version 2.1, pages 2–8. Regression tests now verify that installment and shipping amounts in answers also occur in the cited passages. The catalog instructions explicitly separate instrument categories, price ceilings and brand/model filters.
 
-## Final integration verification � 3 November 2026
+## Final integration verification — 3 November 2026
 
 All seven opt-in checks passed on commit `3759ff4` using `gpt-5.4-mini-2026-03-17`. The five live tests ran first, followed by the two checks against the original private files. The application and test source files were unchanged during execution.
 
@@ -34,7 +34,7 @@ Costs use the configured rates of USD 0.75 per million input tokens and USD 4.50
 
 The [per-test and per-call receipt](final_integration_verification.json) records the seven results, usage and estimates. Private inputs, credentials and provider response IDs are excluded. The standard suite keeps these checks opt-in; their default skip status is separate from this successful execution.
 
-## Earlier full live evaluation � 2 November 2026
+## Earlier full live evaluation — 2 November 2026
 
 | Check | Recorded result |
 |---|---|

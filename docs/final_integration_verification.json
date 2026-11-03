@@ -167,7 +167,7 @@
           },
           "tool": "find_products",
           "arguments": {
-            "category": "Viol�es",
+            "category": "Violões",
             "max_price": null,
             "keywords": ""
           }
@@ -185,7 +185,7 @@
           },
           "tool": "find_products",
           "arguments": {
-            "category": "Viol�es",
+            "category": "Violões",
             "max_price": 500,
             "keywords": ""
           }
