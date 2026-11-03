@@ -112,7 +112,7 @@ With more time: broaden multilingual and adversarial evaluation, integrate a pro
 
 ## AI assistance
 
-OpenAI Codex assisted input inspection, implementation, test design/execution, debugging and English documentation. Earlier MVP documentation attributed initial scaffolding to ChatGPT; that attribution is historical and was not independently verified. AI-generated suggestions were checked through the recorded tests and source-based reviews. No autonomous deployment or unexecuted test is claimed.
+OpenAI Codex supported development, testing and documentation. Changes were validated through the tests and reviews documented in this repository.
 
 ## API references
 
